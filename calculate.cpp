@@ -12,16 +12,16 @@ string bullpgia::calculateBullAndPgia(string choice, string guess){
       {
         if(choice[i]==guess[j])
         {
-          count_bull++;
+          count_pgia++;
           if(i==j)
           {
-            count_bull--;
-            count_pgia++;
+            count_bull++;
+            count_pgia--;
           }
         }
       }
     }
 
-  string ans = std::to_string(count_pgia) + "," + std::to_string(count_bull);
+  string ans = std::to_string(count_bull) + "," + std::to_string(count_pgia);
   return ans;
 }

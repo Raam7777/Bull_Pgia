@@ -1,6 +1,6 @@
 /**
  * A demo program for bull-pgia.
- * 
+ *
  * @author Erel Segal-Halevi
  * @since  2019-04
  */
@@ -36,7 +36,7 @@ int main() {
 
 		testcase.setname("Play with dummy choosers and guessers")
 		.CHECK_EQUAL(play(c1234, g1234, 4, 100), 1)      // guesser wins in one turn.
-		.CHECK_EQUAL(play(c1234, g9999, 4, 100), 101)    // guesser loses by running out of turns 
+		.CHECK_EQUAL(play(c1234, g9999, 4, 100), 101)    // guesser loses by running out of turns
 		.CHECK_EQUAL(play(c1234, g12345, 4, 100), 101)   // guesser loses technically by making an illegal guess (too long).
 		.CHECK_EQUAL(play(c12345, g1234, 4, 100), 0)     // chooser loses technically by choosing an illegal number (too long).
 		;
@@ -48,6 +48,22 @@ int main() {
 			testcase.CHECK_EQUAL(play(randy, smarty, 4, 100)<=10, true);  // smarty should always win in at most 10 turns!
 		}
 
+
+		// -----------------------my test-------------------------------\\
+
+		testcase.setname("Calculate bull and pgia")
+		.CHECK_OUTPUT(calculateBullAndPgia("1230","1234"), "3,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("1230","4321"), "0,3")
+		.CHECK_OUTPUT(calculateBullAndPgia("1200","1234"), "2,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("1200","4321"), "0,2")
+		.CHECK_OUTPUT(calculateBullAndPgia("1000","1234"), "1,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("1000","4321"), "0,1")
+		.CHECK_OUTPUT(calculateBullAndPgia("1243","1234"), "2,2")
+		.CHECK_OUTPUT(calculateBullAndPgia("4132","4321"), "1,3")
+		.CHECK_OUTPUT(calculateBullAndPgia("1243","0000"), "0,0")
+		;
+
+
     grade = testcase.grade();
 	} else {
 		testcase.print_signal(signal);
@@ -56,4 +72,3 @@ int main() {
 	cout << "Your grade is: "  << grade << endl;
 	return 0;
 }
-
